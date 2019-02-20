@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bono.simpleproject.mapper.AccountMapper">
+
+	<insert id="insertAccount" parameterType="com.bono.simpleproject.vo.Account"> 
+		INSERT INTO account(
+			account_number,
+			client_id,
+			account_name,
+			account_deposit,
+			account_branch,
+			account_manager
+			)
+		VALUES(
+			((CONCAT(branch_code,(SELECT EXTRACT(DAY_SECOND FROM now()))))),
+			#{clientId},
+			#{accountName},
+			#{accountDeposit},
+			#{accountBranch},
+			#{accountManager}
+			)
+	</insert>		
+</mapper>
+  

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bono.simpleproject.mapper.BranchMapper">
+	
+	<select id="selectBranch" resultType="com.bono.simpleproject.vo.Branch">
+		SELECT
+			branch_code as branchCode,
+			branch_name as branchName,
+			branch_manager as branchManager
+		FROM
+			branch
+		</select>	
+					
+</mapper>
+  

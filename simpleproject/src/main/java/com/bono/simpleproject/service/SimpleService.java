@@ -1,24 +1,36 @@
 package com.bono.simpleproject.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bono.simpleproject.mapper.SimpleMapper;
+import com.bono.simpleproject.mapper.AccountMapper;
+import com.bono.simpleproject.mapper.BranchMapper;
+import com.bono.simpleproject.mapper.ClientMapper;
+import com.bono.simpleproject.mapper.OrderMapper;
+import com.bono.simpleproject.vo.Branch;
 import com.bono.simpleproject.vo.Client;
 
 @Service
 public class SimpleService {
 	
 	@Autowired
-	private SimpleMapper simpleMapper;
+	private AccountMapper accountMapper;
+	@Autowired
+	private ClientMapper clientMapper;
+	@Autowired
+	private OrderMapper orderMapper;
+	@Autowired
+	private BranchMapper branchMapper;
 	
 	//아이디 패스워드 가져오기
 	public String loginClient(HttpSession session, int clientId, String clientPw) {
 		System.out.println("로그인");
 		
-		Client client = simpleMapper.selectClient(clientId);
+		Client client = clientMapper.selectClient(clientId);
 		
 		if (clientId == client.getClientId() && clientPw.equals(client.getClientPw())) {
 			// 로그인 성공 -> 로그인 정보 세션 등록
@@ -30,4 +42,13 @@ public class SimpleService {
 			return "redirect:/login";
 		}
 	}
+	
+	//관리점 리스트 가져오기
+	public List<Branch> getBranchList() {
+		List<Branch> branchList = (List<Branch>) branchMapper.selectBranch();
+		return branchList;
+		
+	}
+	
+	
 }

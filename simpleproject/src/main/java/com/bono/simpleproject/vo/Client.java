@@ -1,6 +1,6 @@
 package com.bono.simpleproject.vo;
 
-public class Client {
+public class Client extends Branch{
 	private int clientId;
 	private String clientPw;
 	private String clientName;
