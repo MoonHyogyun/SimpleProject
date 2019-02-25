@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bono.simpleproject.mapper.AccountMapper">
 
-	<!-- 지점코드와 랜덤함수를 활용해 계좌번호를 생성하고 계좌정보를 생성하는 쿼리문 -->
+	<!-- 지점코드와 DAY_SECOND를 활용해 계좌번호를 생성하고 계좌정보를 생성하는 쿼리문 -->
 	<insert id="insertAccount" parameterType="com.bono.simpleproject.vo.Account"> 
 		INSERT INTO account(
 			account_number,
@@ -23,6 +23,16 @@
 			#{accountManager}
 			)
 	</insert>		
+	
+	<!-- 고객ID를 통해 해당 고객의 계좌번호를 가져오는 쿼리문 -->
+	<select id="selectAccountNumber" parameterType="int" resultType="com.bono.simpleproject.vo.Account">
+		SELECT 
+			account_number as accountNumber
+		FROM 
+			account
+		WHERE 
+			client_id = #{sessionId}		
+	</select>
 	
 </mapper>
   

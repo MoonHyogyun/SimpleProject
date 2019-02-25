@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bono.simpleproject.mapper.AccountMapper;
 import com.bono.simpleproject.mapper.BranchMapper;
@@ -15,6 +14,7 @@ import com.bono.simpleproject.mapper.OrderMapper;
 import com.bono.simpleproject.vo.Account;
 import com.bono.simpleproject.vo.Branch;
 import com.bono.simpleproject.vo.Client;
+import com.bono.simpleproject.vo.ItemOrder;
 
 @Service
 public class SimpleService {
@@ -61,8 +61,23 @@ public class SimpleService {
 		
 		System.out.println("openAccount = "+account);
 		return accountMapper.insertAccount(account);
-
 	}
 	
+	//세션에 들어있는 아이디에 따라 계좌번호 가져오기
+	public List<Account> getAccountNumberList(int sessionId) {
+		List<Account> accountList = accountMapper.selectAccountNumber(sessionId);
+		return accountList;
+	}
+	
+	//주문처리하기
+	public int addOrder(ItemOrder itemOrder) {
+		return orderMapper.insertOrder(itemOrder);
+	}
+	
+	//주문 리스트 가져오기
+	public List<ItemOrder> getOrderList(int sessionId) {
+		List<ItemOrder> itemOrderList = orderMapper.selectOrder(sessionId);
+		return itemOrderList;
+	}
 	
 }

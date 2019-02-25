@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bono.simpleproject.service.SimpleService;
 import com.bono.simpleproject.vo.Account;
 import com.bono.simpleproject.vo.Branch;
+import com.bono.simpleproject.vo.ItemOrder;
 
 @Controller
 public class SimpleController {
@@ -62,13 +63,28 @@ public class SimpleController {
 		return "index";
 	}
 	
-	// 7. 상품선택화면
-	@GetMapping("/buyItem")
-	public String buyItem() {
-		System.out.println("상품선택화면");
-		return "buyItem";
+	// 7. 상품선택화면(계좌번호 선택 포함)
+	@GetMapping("/orderItem")
+	public String orderItem(HttpSession session, Model model) {
+		System.out.println("계좌번호 선택하고 상품 선택하는 화면");
+		List<Account> accountList = simpleService.getAccountNumberList((int)session.getAttribute("sessionId"));
+		model.addAttribute("accountList", accountList);
+		return "orderItem";
 	}
 	
+	// 8. 주문처리 요청
+	@PostMapping("/addOrder")
+	public String addOrder(ItemOrder itemOrder) {
+		simpleService.addOrder(itemOrder);
+		return "index";
+	}
 	
+	// 9. 주문 리스트 요청
+	@GetMapping("/orderList")
+	public String getOrderList(HttpSession session, Model model) {
+		List<ItemOrder> itemOrderList = simpleService.getOrderList((int)session.getAttribute("sessionId"));
+		model.addAttribute("itemOrderList", itemOrderList);
+		return "orderList";
+	}
 	
 }

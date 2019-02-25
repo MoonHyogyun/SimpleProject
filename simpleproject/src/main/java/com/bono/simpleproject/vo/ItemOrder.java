@@ -1,11 +1,11 @@
 package com.bono.simpleproject.vo;
 
-public class Order {
+public class ItemOrder {
 	private String orderDate;
 	private int orderNumber;
 	private int accountNumber;
 	private int clientId;
-	private int itemCode;
+	private String itemCode;
 	private int orderCount;
 	private int orderPrice;
 	public String getOrderDate() {
@@ -32,10 +32,10 @@ public class Order {
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
 	}
-	public int getItemCode() {
+	public String getItemCode() {
 		return itemCode;
 	}
-	public void setItemCode(int itemCode) {
+	public void setItemCode(String itemCode) {
 		this.itemCode = itemCode;
 	}
 	public int getOrderCount() {
@@ -52,9 +52,10 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [orderDate=" + orderDate + ", orderNumber=" + orderNumber + ", accountNumber=" + accountNumber
+		return "ItemOrder [orderDate=" + orderDate + ", orderNumber=" + orderNumber + ", accountNumber=" + accountNumber
 				+ ", clientId=" + clientId + ", itemCode=" + itemCode + ", orderCount=" + orderCount + ", orderPrice="
 				+ orderPrice + "]";
 	}
+
 	
 }
