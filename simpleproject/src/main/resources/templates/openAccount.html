@@ -1,5 +1,8 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head>계좌 개설 폼
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymleaf.org'>
+<head>
+<meta charset="UTF-8">
+<title>계좌 개설 폼</title>
 </head>
 <body>
 
@@ -17,9 +20,9 @@
 			</tr>
 						
 			<tr>
-				<td>지점명: <select id="branchName">
+				<td>지점명: <select name="branchCode">
 						<option selected="selected" th:each="b : ${branchList}"
-							th:name="${b.branchCode}" th:text="${b.branchName}"></option>
+							th:value="${b.branchCode}" th:text="${b.branchName}"></option>
 				</select>
 				</td>
 			</tr>

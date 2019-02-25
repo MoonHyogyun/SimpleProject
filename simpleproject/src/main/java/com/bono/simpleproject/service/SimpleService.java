@@ -6,11 +6,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bono.simpleproject.mapper.AccountMapper;
 import com.bono.simpleproject.mapper.BranchMapper;
 import com.bono.simpleproject.mapper.ClientMapper;
 import com.bono.simpleproject.mapper.OrderMapper;
+import com.bono.simpleproject.vo.Account;
 import com.bono.simpleproject.vo.Branch;
 import com.bono.simpleproject.vo.Client;
 
@@ -48,6 +50,18 @@ public class SimpleService {
 		List<Branch> branchList = (List<Branch>) branchMapper.selectBranch();
 		return branchList;
 		
+	}
+	
+	//계좌개설
+	public int openAccount(Account account,int branchCode) {
+		//branchCode로 accountBranch 정보를 가져와 Account에 담기
+		Branch branch = branchMapper.selectBranchOne(branchCode);
+		account.setAccountBranch(branch.getBranchName());
+		account.setAccountManager(branch.getBranchManager());
+		
+		System.out.println("openAccount = "+account);
+		return accountMapper.insertAccount(account);
+
 	}
 	
 	

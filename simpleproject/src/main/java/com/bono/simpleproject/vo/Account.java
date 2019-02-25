@@ -1,16 +1,17 @@
 package com.bono.simpleproject.vo;
 
-public class Account {
-	private int accountNumber;
+public class Account extends Client{
+	private String accountNumber;
 	private int clientId;
 	private String accountName;
 	private int accountDeposit;
 	private String accountBranch;
 	private String accountManager;
-	public int getAccountNumber() {
+	
+	public String getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	public int getClientId() {

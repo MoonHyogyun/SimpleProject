@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bono.simpleproject.mapper.AccountMapper">
 
+	<!-- 지점코드와 랜덤함수를 활용해 계좌번호를 생성하고 계좌정보를 생성하는 쿼리문 -->
 	<insert id="insertAccount" parameterType="com.bono.simpleproject.vo.Account"> 
 		INSERT INTO account(
 			account_number,
@@ -14,7 +15,7 @@
 			account_manager
 			)
 		VALUES(
-			((CONCAT(branch_code,(SELECT EXTRACT(DAY_SECOND FROM now()))))),
+			(SELECT CONCAT(#{branchCode},(SELECT EXTRACT(DAY_SECOND FROM now())))),
 			#{clientId},
 			#{accountName},
 			#{accountDeposit},
@@ -22,5 +23,6 @@
 			#{accountManager}
 			)
 	</insert>		
+	
 </mapper>
   

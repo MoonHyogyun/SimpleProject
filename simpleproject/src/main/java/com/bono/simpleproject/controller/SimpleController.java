@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bono.simpleproject.service.SimpleService;
+import com.bono.simpleproject.vo.Account;
 import com.bono.simpleproject.vo.Branch;
 
 @Controller
@@ -32,6 +33,7 @@ public class SimpleController {
 		System.out.println("로그인 처리 요청");
 		return simpleService.loginClient(session, clientId, clientPw);
 	}
+	
 	// 3. index폼
 	@GetMapping("/index")
 	public String index() {
@@ -42,9 +44,7 @@ public class SimpleController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		
 		return "index";
-		
 	}
 	
 	// 5. 계좌개설폼
@@ -57,9 +57,18 @@ public class SimpleController {
 	
 	// 6. 계좌개설처리
 	@PostMapping("/openAccount")
-	public String openAccountAction(Account account) {	//매개변수 확인 필요(구현중)
-		
+	public String openAccountAction(Account account, @RequestParam("branchCode") int branchCode) {
+		simpleService.openAccount(account, branchCode);
 		return "index";
 	}
+	
+	// 7. 상품선택화면
+	@GetMapping("/buyItem")
+	public String buyItem() {
+		System.out.println("상품선택화면");
+		return "buyItem";
+	}
+	
+	
 	
 }
