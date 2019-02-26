@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymleaf.org'>
+<head>
+<meta charset="UTF-8">
+<title>계좌 개설 폼</title>
+</head>
+<body>
+
+	<form th:action="@{/openAccount}" method="post">
+		<table>
+			<tr>
+				<td>고객ID : <input type="text" name="clientId"
+					th:value="${session.sessionId}" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>계좌명 : <input type="text" name="accountName"></td>
+			</tr>
+				<tr>
+				<td>예수금 : <input type="text" name="accountDeposit"></td>
+			</tr>
+						
+			<tr>
+				<td>지점명: <select name="branchCode">
+						<option selected="selected" th:each="b : ${branchList}"
+							th:value="${b.branchCode}" th:text="${b.branchName}"></option>
+						</select>			
+				</td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" th:value="계좌개설"></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
