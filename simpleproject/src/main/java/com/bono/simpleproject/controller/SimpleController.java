@@ -76,7 +76,7 @@ public class SimpleController {
 	@PostMapping("/addOrder")
 	public String addOrder(ItemOrder itemOrder) {
 		simpleService.addOrder(itemOrder);
-		return "index";
+		return "redirect:/orderList";
 	}
 	
 	// 9. 주문 리스트 요청

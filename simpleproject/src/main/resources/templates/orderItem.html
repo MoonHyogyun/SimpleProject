@@ -115,7 +115,7 @@
           <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
           
           
-          <form th:action="@{/addOrder}" method="post"><!-- name="sentMessage" id="contactForm" novalidate="novalidate"> -->
+          <form th:action="@{/addOrder}" id="addOrder" method="post"><!-- name="sentMessage" id="contactForm" novalidate="novalidate"> -->
             
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
@@ -151,7 +151,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>수량</label>
-                <input class="form-control" name="orderCount" id="orderCount" type="number" placeholder="수량">	
+                <input class="int" name="orderCount" id="orderCount" type="number" placeholder="수량">	
                 <p class="help-block text-danger"></p>
               </div>
             </div>
@@ -159,7 +159,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>금액</label>
-                <input class="form-control" name="orderPrice" id="orderPrice" type="text" placeholder="금액">	
+                <input class="int" name="orderPrice" id="orderPrice" type="text" placeholder="금액">	
                 <p class="help-block text-danger"></p>
               </div>
             </div>

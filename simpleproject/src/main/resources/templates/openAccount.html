@@ -3,6 +3,29 @@
 <html lang="en">
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+	/* 유효성 검사 */
+	$(document).ready(function(){
+		$('#sendMessageButton').click(function(){	
+			$('#openAccount').submit(function(event){
+				if($('#accountName').val().length<1) {
+					$('#accountName').attr('placeholder', '한 글자 이상 입력해 주세요.');
+					$('#accountName').focus();
+					return false;	
+				} else if($('#accountDeposit').val().length<1) {
+					$('#accountDeposit').attr('placeholder', '숫자를 입력해 주세요.');
+					$('#accountDeposit').focus();
+					return false;
+				} else if($('#branchCode').val().length<1) {
+					$('#branchCode').attr('placeholder', '한 글자 이상 입력해 주세요.');
+					$('#branchCode').focus();
+					return false;
+				}
+			});
+		});
+	});
+</script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -77,7 +100,7 @@
           <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
           
           
-          <form th:action="@{/openAccount}" method="post"><!-- name="sentMessage" id="contactForm" novalidate="novalidate"> -->
+          <form th:action="@{/openAccount}" id="openAccount" method="post"><!-- name="sentMessage" id="contactForm" novalidate="novalidate"> -->
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>ID</label>
@@ -95,7 +118,7 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>예수금</label>
-                <input class="form-control" name="accountDeposit" id="accountDeposit" type="text" placeholder="예수금">
+                <input class="form-control" name="accountDeposit" id="accountDeposit" type="number" placeholder="예수금">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
